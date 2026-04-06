@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact Us</title>
+    <title>联系我们 | 深圳市昊然电子有限公司</title>
+    <meta name="description" content="联系深圳市昊然电子有限公司，了解电感产品、定制服务及合作信息。提供贴片电感、功率电感及定制电感解决方案。" />
     <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -13,70 +14,118 @@
     <header>
         <div class="container nav">
             <h1 class="logo">
-                SHENZHEN HAORAN ELECTRONICS CO.,LTD<br>
-                <span style="font-size:14px;">深圳市昊然电子有限公司</span>
+                深圳市昊然电子有限公司<br>
+                <span class="logo-en">SHENZHEN HAORAN ELECTRONICS CO., LTD</span>
             </h1>
             <nav>
-                <a href="index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="products.html">Products</a>
-                <a href="contact.html" class="active">Contact</a>
+                <a href="index.html">首页</a>
+                <a href="about.html">关于我们</a>
+                <a href="products.html">产品中心</a>
+                <a href="contact.html" class="active">联系我们</a>
             </nav>
         </div>
     </header>
 
-   ction class="contact">
-    <div class="container">
-        <h3>Contact Us</h3>
-        <p>Email: sales@yourcompany.com</p>
-        <p>Phone: +86 138 xxxx xxxx</p>
-        <p>Address: Shenzhen, China</p>
+    <section class="page-banner">
+        <div class="container">
+            <h2>联系我们</h2>
+            <p>欢迎咨询产品规格、定制服务及合作信息，我们将尽快与您联系</p>
+        </div>
+    </section>
 
-        <form class="contact-form" id="contactForm">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" placeholder="Enter your name">
+    <section class="contact-page">
+        <div class="container contact-layout">
 
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="Enter your email">
+            <div class="contact-info-card">
+                <h3>联系方式</h3>
+                <p class="contact-intro">
+                    如您有产品选型、参数确认、样品需求或定制合作意向，欢迎通过以下方式与我们联系。
+                </p>
 
-            <label for="message">Message</label>
-            <textarea id="message" name="message" rows="6" placeholder="Enter your message"></textarea>
+                <div class="contact-info-item">
+                    <h4>邮箱</h4>
+                    <p>sz-haoran@126.com</p>
+                </div>
 
-            <button type="submit">Send Message</button>
-            <p id="formMessage"></p>
-        </form>
-    </div>
-</section>
+                <div class="contact-info-item">
+                    <h4>联系电话</h4>
+                    <p>+86 13392824288</p>
+                </div>
 
-<script>
-    const form = document.getElementById("contactForm");
-    const nameInput = document.getElementById("name");
-    const emailInput = document.getElementById("email");
-    const messageInput = document.getElementById("message");
-    const formMessage = document.getElementById("formMessage");
+                <div class="contact-info-item">
+                    <h4>公司地址</h4>
+                    <p>广东省惠州市仲恺高新区潼湖镇三和村松柏岭大道84号26#厂房11楼</p>
+                </div>
 
-    form.addEventListener("submit", function (event) {
-        event.preventDefault();
+                <div class="contact-info-item">
+                    <h4>服务内容</h4>
+                    <p>贴片电感、功率电感、磁性元器件、OEM / ODM 定制服务</p>
+                </div>
+            </div>
 
-        const name = nameInput.value.trim();
-        const email = emailInput.value.trim();
-        const message = messageInput.value.trim();
+            <div class="contact-form-card">
+                <h3>在线留言</h3>
+                <p class="section-desc">
+                    请填写您的联系方式与需求信息，我们会尽快与您取得联系。
+                </p>
 
-        if (name === "" || email === "" || message === "") {
-            formMessage.textContent = "Please fill in all fields.";
-            formMessage.className = "error-message";
-            return;
-        }
+                <form class="contact-form" id="contactForm">
+                    <label for="name">您的姓名</label>
+                    <input type="text" id="name" name="name" placeholder="请输入您的姓名" />
 
-        if (!email.includes("@") || !email.includes(".")) {
-            formMessage.textContent = "Please enter a valid email address.";
-            formMessage.className = "error-message";
-            return;
-        }
+                    <label for="email">邮箱地址</label>
+                    <input type="email" id="email" name="email" placeholder="请输入您的邮箱地址" />
 
-        formMessage.textContent = "Your message has been sent successfully!";
-        formMessage.className = "success-message";
+                    <label for="message">留言内容</label>
+                    <textarea id="message" name="message" rows="7" placeholder="请输入您的需求、参数或留言内容"></textarea>
 
-        form.reset();
-    });
-</script>
+                    <button type="submit">提交留言</button>
+                    <p id="formMessage"></p>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 深圳市昊然电子有限公司 版权所有</p>
+        </div>
+    </footer>
+
+    <script>
+        const form = document.getElementById("contactForm");
+        const nameInput = document.getElementById("name");
+        const emailInput = document.getElementById("email");
+        const messageInput = document.getElementById("message");
+        const formMessage = document.getElementById("formMessage");
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const name = nameInput.value.trim();
+            const email = emailInput.value.trim();
+            const message = messageInput.value.trim();
+
+            if (name === "" || email === "" || message === "") {
+                formMessage.textContent = "请完整填写所有内容。";
+                formMessage.className = "error-message";
+                return;
+            }
+
+            if (!email.includes("@") || !email.includes(".")) {
+                formMessage.textContent = "请输入有效的邮箱地址。";
+                formMessage.className = "error-message";
+                return;
+            }
+
+            formMessage.textContent = "您的留言已提交成功，我们会尽快与您联系。";
+            formMessage.className = "success-message";
+
+            form.reset();
+        });
+    </script>
+
+</body>
+
+</html>
