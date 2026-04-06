@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <header>
+        <div class="container nav">
+            <h1 class="logo">
+                SHENZHEN HAORAN ELECTRONICS CO.,LTD<br>
+                <span style="font-size:14px;">深圳市昊然电子有限公司</span>
+            </h1>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="products.html">Products</a>
+                <a href="contact.html" class="active">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+   ction class="contact">
+    <div class="container">
+        <h3>Contact Us</h3>
+        <p>Email: sales@yourcompany.com</p>
+        <p>Phone: +86 138 xxxx xxxx</p>
+        <p>Address: Shenzhen, China</p>
+
+        <form class="contact-form" id="contactForm">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name">
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email">
+
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="6" placeholder="Enter your message"></textarea>
+
+            <button type="submit">Send Message</button>
+            <p id="formMessage"></p>
+        </form>
+    </div>
+</section>
+
+<script>
+    const form = document.getElementById("contactForm");
+    const nameInput = document.getElementById("name");
+    const emailInput = document.getElementById("email");
+    const messageInput = document.getElementById("message");
+    const formMessage = document.getElementById("formMessage");
+
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim();
+        const message = messageInput.value.trim();
+
+        if (name === "" || email === "" || message === "") {
+            formMessage.textContent = "Please fill in all fields.";
+            formMessage.className = "error-message";
+            return;
+        }
+
+        if (!email.includes("@") || !email.includes(".")) {
+            formMessage.textContent = "Please enter a valid email address.";
+            formMessage.className = "error-message";
+            return;
+        }
+
+        formMessage.textContent = "Your message has been sent successfully!";
+        formMessage.className = "success-message";
+
+        form.reset();
+    });
+</script>
