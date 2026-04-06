@@ -148,15 +148,50 @@ nav a.active {
 }
 
 /* =========================
-   6. 关于我们模块
+   6. 内页顶部横幅
+========================= */
+.page-banner {
+    background: linear-gradient(135deg, #1f2a44, #2d3b5f);
+    color: #fff;
+    padding: 70px 20px;
+    text-align: center;
+}
+
+.page-banner h2 {
+    font-size: 36px;
+    margin-bottom: 12px;
+}
+
+.page-banner p {
+    font-size: 16px;
+    opacity: 0.9;
+    max-width: 760px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
+
+/* 小段说明文字 */
+.section-desc {
+    margin-bottom: 30px;
+    color: #666;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+/* =========================
+   7. 关于我们模块
 ========================= */
 .about {
     background-color: #f5f5f5;
     padding: 80px 20px;
 }
 
-.about .container {
-    max-width: 900px;
+/* 统一 About 页面几个模块的左边对齐 */
+.about .container,
+.factory-section .container,
+.about-advantage .container,
+.about-contact .container {
+    max-width: 1100px;
 }
 
 .about h3 {
@@ -164,6 +199,11 @@ nav a.active {
     font-weight: 600;
     margin-bottom: 30px;
     color: #222;
+}
+
+/* 公司简介正文单独控制宽度，避免文字太长 */
+.about-text {
+    max-width: 900px;
 }
 
 .about p {
@@ -208,60 +248,6 @@ nav a.active {
     margin: 0;
     font-size: 15px;
     color: #666;
-}
-
-/* 关于我们页面底部联系区 */
-.about-contact {
-    padding: 70px 20px;
-    background: #ffffff;
-}
-
-.about-contact .container {
-    max-width: 900px;
-}
-
-.about-contact h3 {
-    font-size: 30px;
-    margin-bottom: 24px;
-    color: #222;
-}
-
-.about-contact p {
-    font-size: 17px;
-    color: #444;
-    line-height: 1.9;
-    margin-bottom: 10px;
-}
-
-/* =========================
-   7. 内页顶部横幅
-========================= */
-.page-banner {
-    background: linear-gradient(135deg, #1f2a44, #2d3b5f);
-    color: #fff;
-    padding: 70px 20px;
-    text-align: center;
-}
-
-.page-banner h2 {
-    font-size: 36px;
-    margin-bottom: 12px;
-}
-
-.page-banner p {
-    font-size: 16px;
-    opacity: 0.9;
-    max-width: 760px;
-    margin: 0 auto;
-    line-height: 1.8;
-}
-
-/* 小段说明文字 */
-.section-desc {
-    margin-bottom: 30px;
-    color: #666;
-    font-size: 16px;
-    line-height: 1.8;
 }
 
 /* =========================
@@ -394,7 +380,7 @@ nav a.active {
 }
 
 .contact-form button {
-    width: 200px;
+    width: 180px;
     background-color: #2563eb;
     color: white;
     padding: 12px 20px;
@@ -424,75 +410,7 @@ nav a.active {
 }
 
 /* =========================
-   11. 页脚
-========================= */
-footer {
-    background-color: #1f2937;
-    color: white;
-    text-align: center;
-    padding: 20px 0;
-    margin-top: 20px;
-}
-
-/* =========================
-   12. 响应式适配（平板/手机）
-========================= */
-@media (max-width: 768px) {
-    .nav {
-        flex-direction: column;
-        gap: 15px;
-        text-align: center;
-    }
-
-    nav a {
-        margin: 0 10px;
-    }
-
-    .hero-content h2 {
-        font-size: 30px;
-    }
-
-    .hero-content p {
-        font-size: 16px;
-    }
-
-    .about h3,
-    .products h3,
-    .contact h3,
-    .product-advantage h3,
-    .about-contact h3,
-    .product-contact h3,
-    .page-banner h2 {
-        font-size: 28px;
-    }
-
-    .about p,
-    .product-card p,
-    .advantage-item p,
-    .about-contact p,
-    .product-contact p {
-        font-size: 16px;
-    }
-
-    .product-list,
-    .about-stats,
-    .advantage-list {
-        flex-direction: column;
-    }
-
-    .product-card,
-    .stat-item,
-    .advantage-item {
-        min-width: 100%;
-    }
-
-    .contact-form button {
-        width: 100%;
-    }
-}
-
-/* =========================
-   13. 联系我们页面高级布局
+   11. 联系我们页面高级布局
 ========================= */
 .contact-page {
     padding: 80px 20px;
@@ -573,30 +491,8 @@ footer {
     margin-bottom: 24px;
 }
 
-/* 表单按钮宽度在这个布局下更自然 */
-.contact-form button {
-    width: 180px;
-}
-
-/* 手机端适配 */
-@media (max-width: 768px) {
-    .contact-layout {
-        flex-direction: column;
-    }
-
-    .contact-info-card,
-    .contact-form-card {
-        width: 100%;
-        min-width: 100%;
-    }
-
-    .contact-form button {
-        width: 100%;
-    }
-}
-
 /* =========================
-   14. 关于我们页 - 生产实力模块
+   12. 关于我们页 - 生产实力模块
 ========================= */
 .factory-section {
     background: #ffffff;
@@ -640,7 +536,7 @@ footer {
 }
 
 /* =========================
-   15. 关于我们页 - 优势模块
+   13. 关于我们页 - 优势模块
 ========================= */
 .about-advantage {
     background: #f5f5f5;
@@ -653,15 +549,111 @@ footer {
     color: #222;
 }
 
+/* 联系我们描述行宽与正文统一 */
+.about-contact .section-desc {
+    max-width: 900px;
+    margin-bottom: 20px;
+}
+
+/* 关于我们页面底部联系区 */
+.about-contact {
+    padding: 70px 20px;
+    background: #ffffff;
+}
+
+.about-contact h3 {
+    font-size: 30px;
+    margin-bottom: 24px;
+    color: #222;
+}
+
+.about-contact p {
+    font-size: 17px;
+    color: #444;
+    line-height: 1.9;
+    margin-bottom: 10px;
+}
+
 /* =========================
-   16. 手机端适配补充
+   14. 页脚
+========================= */
+footer {
+    background-color: #1f2937;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 20px;
+}
+
+/* =========================
+   15. 响应式适配（平板/手机）
 ========================= */
 @media (max-width: 768px) {
-    .factory-images {
+    .nav {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    nav a {
+        margin: 0 10px;
+    }
+
+    .hero-content h2 {
+        font-size: 30px;
+    }
+
+    .hero-content p {
+        font-size: 16px;
+    }
+
+    .about h3,
+    .products h3,
+    .contact h3,
+    .product-advantage h3,
+    .about-contact h3,
+    .product-contact h3,
+    .page-banner h2,
+    .factory-section h3,
+    .about-advantage h3,
+    .contact-info-card h3,
+    .contact-form-card h3 {
+        font-size: 28px;
+    }
+
+    .about p,
+    .product-card p,
+    .advantage-item p,
+    .about-contact p,
+    .product-contact p,
+    .contact-info-item p {
+        font-size: 16px;
+    }
+
+    .product-list,
+    .about-stats,
+    .advantage-list,
+    .factory-images,
+    .contact-layout {
         flex-direction: column;
     }
 
-    .factory-item {
+    .product-card,
+    .stat-item,
+    .advantage-item,
+    .factory-item,
+    .contact-info-card,
+    .contact-form-card {
         min-width: 100%;
+        width: 100%;
+    }
+
+    .contact-form button {
+        width: 100%;
+    }
+
+    .about-text,
+    .about-contact .section-desc {
+        max-width: 100%;
     }
 }
