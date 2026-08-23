@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://3023389299-afk.github.io/haoran-company-website/sitemap.xml
