@@ -70,4 +70,98 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  const searchForm = document.querySelector("[data-product-search-form]");
+  const searchInput = document.querySelector("[data-product-search-input]");
+  const searchClear = document.querySelector("[data-product-search-clear]");
+  const searchStatus = document.querySelector("[data-product-search-status]");
+  const searchResults = document.querySelector("[data-product-search-results]");
+  const searchEmpty = document.querySelector("[data-product-search-empty]");
+  const searchCards = Array.from(document.querySelectorAll("[data-product-search-card]"));
+  const normalizeSearch = (value) => String(value || "").toUpperCase().replace(/[\s\-_/（）()·.]+/g, "");
+
+  if (searchForm && searchInput && searchStatus) {
+    searchCards.forEach((card) => {
+      const detailLink = card.querySelector("[data-search-detail]");
+      if (detailLink) detailLink.dataset.baseHref = detailLink.getAttribute("href") || "";
+    });
+
+    const runProductSearch = (value, moveFocus = false) => {
+      const rawQuery = String(value || "").trim();
+      const query = normalizeSearch(rawQuery);
+      let visibleCount = 0;
+
+      searchCards.forEach((card) => {
+        const searchable = normalizeSearch(card.dataset.search);
+        const visible = Boolean(query) && searchable.includes(query);
+        card.hidden = !visible;
+        card.classList.remove("has-model-matches");
+        if (!visible) return;
+
+        visibleCount += 1;
+        const modelChips = Array.from(card.querySelectorAll("[data-model]"));
+        const modelMatches = modelChips.filter((chip) => normalizeSearch(chip.dataset.model).includes(query));
+        modelChips.forEach((chip) => chip.classList.toggle("is-match", modelMatches.includes(chip)));
+        card.classList.toggle("has-model-matches", modelMatches.length > 0);
+
+        const detailLink = card.querySelector("[data-search-detail]");
+        if (detailLink) {
+          const baseHref = detailLink.dataset.baseHref || detailLink.getAttribute("href") || "";
+          const exactModel = modelMatches.find((chip) => normalizeSearch(chip.dataset.model) === query);
+          detailLink.setAttribute("href", exactModel
+            ? `${baseHref}?model=${encodeURIComponent(exactModel.dataset.model)}#available-models`
+            : baseHref);
+        }
+      });
+
+      searchClear.hidden = !rawQuery;
+      searchEmpty.hidden = !query || visibleCount > 0;
+      searchStatus.textContent = !query
+        ? "输入型号、系列或产品关键词开始搜索"
+        : visibleCount > 0
+          ? `找到 ${visibleCount} 个相关产品系列，点击可查看详细资料`
+          : "暂未找到匹配产品，可尝试缩短型号或提交选型需求";
+
+      if (moveFocus && visibleCount > 0) {
+        searchResults?.querySelector("[data-product-search-card]:not([hidden]) [data-search-detail]")?.focus();
+      }
+    };
+
+    searchInput.addEventListener("input", () => runProductSearch(searchInput.value));
+    searchForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      runProductSearch(searchInput.value, true);
+    });
+    searchClear?.addEventListener("click", () => {
+      searchInput.value = "";
+      runProductSearch("");
+      searchInput.focus();
+    });
+    document.querySelectorAll("[data-search-term]").forEach((button) => button.addEventListener("click", () => {
+      searchInput.value = button.dataset.searchTerm || "";
+      runProductSearch(searchInput.value);
+      searchInput.focus();
+    }));
+
+    const initialQuery = new URLSearchParams(window.location.search).get("q") || "";
+    if (initialQuery) {
+      searchInput.value = initialQuery;
+      runProductSearch(initialQuery);
+    }
+  }
+
+  const requestedModel = new URLSearchParams(window.location.search).get("model");
+  if (requestedModel) {
+    const requestedKey = normalizeSearch(requestedModel);
+    const modelChip = Array.from(document.querySelectorAll(".model-number-grid [data-model]"))
+      .find((chip) => normalizeSearch(chip.dataset.model) === requestedKey);
+    const modelNote = document.querySelector("[data-selected-model]");
+    if (modelChip) {
+      modelChip.classList.add("is-selected");
+      if (modelNote) {
+        modelNote.textContent = `已从产品搜索定位到型号：${modelChip.dataset.model}。下方参数为所属系列的公开资料，具体电气参数请以对应规格书或工程确认结果为准。`;
+        modelNote.hidden = false;
+      }
+    }
+  }
+
 });
