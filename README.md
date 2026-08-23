@@ -1,32 +1,7 @@
-[🌐 Live Demo](https://3023389299-afk.github.io/haoran-company-website/)
-
 # Haoran Electronics Company Website
 
-This project is a multi-page company website developed for an industrial electronics business specializing in inductors and electronic components.
+Public company website for Shenzhen Haoran Electronics Co., Ltd. and Huizhou Shixin Technology Co., Ltd.
 
-## Features
+Live website: https://3023389299-afk.github.io/haoran-company-website/
 
-- Multi-page website (Home, About, Products, Contact)
-- Product showcase with images
-- Contact form with client-side validation using JavaScript
-- Navigation bar with active page highlighting
-- Responsive layout design
-- Deployed using GitHub Pages
-
-## Technologies Used
-
-- HTML
-- CSS
-- JavaScript
-
-## Live Website
-
-https://3023389299-afk.github.io/haoran-company-website/
-
-## Project Description
-
-This project simulates a real-world company website, focusing on presenting company information, product details, and enabling customer inquiries through a contact form.
-
-## Author
-
-TQ Zhou
+This branch contains the static GitHub Pages build. The maintainable TypeScript source is stored separately in the delivered source package.
