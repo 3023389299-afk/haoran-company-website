@@ -22,11 +22,23 @@ document.addEventListener("DOMContentLoaded", () => {
   menuButton?.addEventListener("click", () => {
     const open = nav?.classList.toggle("open") ?? false;
     menuButton.setAttribute("aria-expanded", String(open));
+    menuButton.setAttribute("aria-label", open ? "关闭导航" : "打开导航");
+    document.body.classList.toggle("mobile-menu-open", open);
   });
   nav?.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => {
     nav.classList.remove("open");
     menuButton?.setAttribute("aria-expanded", "false");
+    menuButton?.setAttribute("aria-label", "打开导航");
+    document.body.classList.remove("mobile-menu-open");
   }));
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape" || !nav?.classList.contains("open")) return;
+    nav.classList.remove("open");
+    menuButton?.setAttribute("aria-expanded", "false");
+    menuButton?.setAttribute("aria-label", "打开导航");
+    document.body.classList.remove("mobile-menu-open");
+    menuButton?.focus();
+  });
 
   const catalogDownload = document.querySelector(".catalog-download");
   catalogDownload?.addEventListener("click", async (event) => {
