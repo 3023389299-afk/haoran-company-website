@@ -58,22 +58,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  const form = document.querySelector(".contact-form");
-  form?.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const data = new FormData(form);
-    const name = String(data.get("name") || "").trim();
-    const contact = String(data.get("contact") || "").trim();
-    const product = String(data.get("product") || "").trim();
-    const need = String(data.get("need") || "").trim();
-    const status = form.querySelector(".form-status");
-    if (!name || !contact || !need) {
-      if (status) status.textContent = "请填写姓名、联系方式与需求说明。";
-      return;
-    }
-    if (status) status.textContent = "正在打开邮件应用…";
-    const subject = encodeURIComponent(`产品选型咨询｜${name}`);
-    const body = encodeURIComponent(`姓名 / 公司：${name}\n联系方式：${contact}\n产品方向：${product}\n需求：${need}`);
-    window.location.href = `mailto:sz-haoran@126.com?subject=${subject}&body=${body}`;
-  });
 });
