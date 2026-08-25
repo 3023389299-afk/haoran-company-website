@@ -675,6 +675,39 @@ body { font-family: Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
 .about-history-grid p { margin: 0; color: var(--muted); font-size: 10px; line-height: 1.8; }
 .about-history-grid li:hover .about-history-index, .about-history-grid li:hover small { color: var(--lime); }
 .about-history-grid li:hover p { color: #a8bbb4; }
+.about-organization { color: white; background: var(--deep); }
+.about-organization-head { max-width: 1080px; margin: 0 auto 62px; display: grid; grid-template-columns: .8fr 1fr; gap: 9vw; align-items: end; }
+.about-organization-head h2 { margin: 14px 0 0; font-size: clamp(42px, 4.5vw, 68px); line-height: 1.04; letter-spacing: -.06em; }
+.about-organization-head > p { max-width: 540px; margin: 0; color: #9eb1aa; font-size: 13px; line-height: 1.9; }
+.organization-chart { max-width: 1080px; margin: 0 auto; }
+.organization-root { width: min(100%, 420px); min-height: 150px; margin: 0 auto; padding: 28px 34px; display: grid; align-content: center; position: relative; text-align: center; color: var(--ink); background: var(--lime); }
+.organization-root::after { content: ""; width: 1px; height: 29px; position: absolute; left: 50%; bottom: -29px; background: rgba(216,255,121,.42); }
+.organization-root small, .organization-root strong, .organization-root span { display: block; }
+.organization-root small { color: var(--green); font-size: 7px; font-weight: 900; letter-spacing: .15em; }
+.organization-root strong { margin: 11px 0 8px; font-size: 31px; letter-spacing: -.04em; }
+.organization-root span { color: rgba(16,41,34,.66); font-size: 9px; letter-spacing: .08em; }
+.organization-group-grid { margin-top: 52px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; position: relative; }
+.organization-group-grid::before { content: ""; height: 1px; position: absolute; top: -24px; left: 16.66%; right: 16.66%; background: rgba(216,255,121,.42); }
+.organization-group-grid > article { min-width: 0; position: relative; border: 1px solid var(--white-line); background: rgba(255,255,255,.025); transition: transform .35s ease, border-color .35s ease, background .35s ease; }
+.organization-group-grid > article::before { content: ""; width: 1px; height: 24px; position: absolute; top: -25px; left: 50%; background: rgba(216,255,121,.42); }
+.organization-group-grid > article:hover { transform: translateY(-5px); border-color: rgba(216,255,121,.45); background: rgba(255,255,255,.055); }
+.organization-group-grid article > header { min-height: 205px; padding: 29px 28px 26px; }
+.organization-group-grid header > span { color: var(--lime); font-size: 8px; font-weight: 900; }
+.organization-group-grid header > small { margin-left: 14px; color: #82968f; font-size: 7px; font-weight: 800; letter-spacing: .12em; }
+.organization-group-grid h3 { margin: 32px 0 13px; font-size: 27px; letter-spacing: -.04em; }
+.organization-group-grid header p { margin: 0; color: #9eb1aa; font-size: 10px; line-height: 1.8; }
+.organization-group-grid ul { margin: 0; padding: 0; border-top: 1px solid var(--white-line); list-style: none; }
+.organization-group-grid li { min-height: 58px; padding: 0 28px; display: flex; align-items: center; border-bottom: 1px solid var(--white-line); color: #d5dfdb; font-size: 11px; }
+.organization-group-grid li:last-child { border-bottom: 0; }
+.organization-operation-grid { margin-top: 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.organization-operation-grid > article { border: 1px solid var(--white-line); background: rgba(255,255,255,.025); }
+.organization-operation-grid header { padding: 27px 28px 22px; border-bottom: 1px solid var(--white-line); }
+.organization-operation-grid header span { color: var(--lime); font-size: 7px; font-weight: 900; letter-spacing: .14em; }
+.organization-operation-grid h3 { margin: 9px 0 0; font-size: 21px; letter-spacing: -.03em; }
+.organization-operation-grid ul { margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); list-style: none; }
+.organization-operation-grid li { min-height: 58px; padding: 0 22px; display: flex; align-items: center; gap: 14px; border-right: 1px solid var(--white-line); border-bottom: 1px solid var(--white-line); color: #d5dfdb; font-size: 10px; }
+.organization-operation-grid li:nth-child(2n) { border-right: 0; }
+.organization-operation-grid b { color: var(--lime); font-size: 7px; }
 
 .application-detail-page { background: var(--white); }
 .application-detail-hero { min-height: 470px; padding: 86px 5.8vw; display: grid; grid-template-columns: 1fr .75fr; gap: 9vw; align-items: center; color: white; background: var(--deep); }
@@ -822,6 +855,11 @@ body { font-family: Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
   .about-history-head { grid-template-columns: 1fr; gap: 28px; }
   .about-history-grid { grid-template-columns: repeat(2, 1fr); }
   .about-history-grid li { min-height: 255px; }
+  .about-organization-head { grid-template-columns: 1fr; gap: 28px; }
+  .organization-group-grid { grid-template-columns: 1fr; gap: 12px; }
+  .organization-group-grid::before, .organization-group-grid > article::before, .organization-root::after { display: none; }
+  .organization-group-grid article > header { min-height: 0; }
+  .organization-operation-grid { grid-template-columns: 1fr; }
   .product-guide { padding: 28px 20px; }
   .product-guide nav { grid-template-columns: 1fr 1fr; }
   .product-catalog { padding: 10px 20px 80px; }
@@ -1387,6 +1425,19 @@ body.mobile-menu-open { overflow: hidden; }
   .about-history-grid { grid-template-columns: 1fr; }
   .about-history-grid li { min-height: 0; padding: 28px 24px 30px; }
   .about-history-grid strong { margin-top: 25px; }
+  .about-organization { padding-top: 78px; padding-bottom: 78px; }
+  .about-organization-head { margin-bottom: 38px; }
+  .about-organization-head h2 { font-size: 40px; }
+  .about-organization-head > p { font-size: 12px; }
+  .organization-root { min-height: 132px; padding: 24px 20px; }
+  .organization-root strong { font-size: 28px; }
+  .organization-group-grid { margin-top: 12px; }
+  .organization-group-grid article > header { padding: 26px 22px 23px; }
+  .organization-group-grid h3 { margin-top: 25px; }
+  .organization-group-grid li { padding: 0 22px; }
+  .organization-operation-grid header { padding: 24px 22px 20px; }
+  .organization-operation-grid ul { grid-template-columns: 1fr; }
+  .organization-operation-grid li, .organization-operation-grid li:nth-child(2n) { padding: 0 20px; border-right: 0; }
   .application-detail-hero { padding-top: 58px; padding-bottom: 58px; }
   .application-detail-hero h1 { font-size: 48px; }
   .application-detail-hero strong { font-size: 26px; }
