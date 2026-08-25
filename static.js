@@ -40,36 +40,57 @@ document.addEventListener("DOMContentLoaded", () => {
     menuButton?.focus();
   });
 
-  document.querySelectorAll('a[href$="/downloads/shixin-product-catalog.pdf"]').forEach((catalogLink) => {
-    catalogLink.addEventListener("click", async (event) => {
-      event.preventDefault();
-      const originalLabel = catalogLink.innerHTML;
-      catalogLink.setAttribute("aria-busy", "true");
-      catalogLink.innerHTML = "正在准备完整目录… <i>↓</i>";
-      try {
-        const partUrls = Array.from(
-          { length: 9 },
-          (_, index) => `/haoran-company-website/downloads/shixin-product-catalog.pdf.part-${String(index).padStart(2, "0")}`,
-        );
-        const responses = await Promise.all(partUrls.map((url) => fetch(url)));
-        if (responses.some((response) => !response.ok)) throw new Error("catalog part unavailable");
-        const parts = await Promise.all(responses.map((response) => response.arrayBuffer()));
-        const blobUrl = URL.createObjectURL(new Blob(parts, { type: "application/pdf" }));
-        const downloadLink = document.createElement("a");
-        downloadLink.href = blobUrl;
-        downloadLink.download = "惠州市世鑫科技有限公司产品目录.pdf";
-        document.body.appendChild(downloadLink);
-        downloadLink.click();
-        downloadLink.remove();
-        setTimeout(() => URL.revokeObjectURL(blobUrl), 3000);
-        catalogLink.innerHTML = originalLabel;
-      } catch {
-        catalogLink.innerHTML = "目录下载失败，请联系我们获取 <i>↗</i>";
-      } finally {
-        catalogLink.removeAttribute("aria-busy");
+  const banner = document.querySelector(".home-banner");
+  if (banner) {
+    const slides = [...banner.querySelectorAll(".home-banner-media img")];
+    const controls = [...banner.querySelectorAll(".home-banner-controls button")];
+    const caption = banner.querySelector(".home-banner-caption");
+    let currentSlide = Math.max(0, controls.findIndex((button) => button.classList.contains("is-active")));
+    let bannerTimer;
+
+    const showSlide = (nextSlide) => {
+      currentSlide = (nextSlide + slides.length) % slides.length;
+      slides.forEach((slide, index) => {
+        const active = index === currentSlide;
+        slide.classList.toggle("is-active", active);
+        slide.setAttribute("aria-hidden", String(!active));
+        slide.alt = active ? slide.dataset.alt || "" : "";
+      });
+      controls.forEach((button, index) => {
+        const active = index === currentSlide;
+        button.classList.toggle("is-active", active);
+        if (active) button.setAttribute("aria-current", "true");
+        else button.removeAttribute("aria-current");
+      });
+      const selected = controls[currentSlide];
+      if (caption && selected) {
+        caption.querySelector("span").textContent = selected.dataset.slideLabel || "";
+        caption.querySelector("strong").textContent = selected.dataset.slideTitle || "";
+        caption.querySelector("p").textContent = selected.dataset.slideDetail || "";
+        caption.style.animation = "none";
+        caption.offsetHeight;
+        caption.style.animation = "";
       }
-    });
-  });
+    };
+
+    const stopRotation = () => window.clearInterval(bannerTimer);
+    const startRotation = () => {
+      stopRotation();
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        bannerTimer = window.setInterval(() => showSlide(currentSlide + 1), 6200);
+      }
+    };
+
+    controls.forEach((button, index) => button.addEventListener("click", () => {
+      showSlide(index);
+      startRotation();
+    }));
+    banner.addEventListener("mouseenter", stopRotation);
+    banner.addEventListener("mouseleave", startRotation);
+    banner.addEventListener("focusin", stopRotation);
+    banner.addEventListener("focusout", startRotation);
+    startRotation();
+  }
 
   const normalize = (value) => value.toUpperCase().replace(/[\s\-_/（）()·.]+/g, "");
   const searchInput = document.querySelector("[data-product-search-input]");
