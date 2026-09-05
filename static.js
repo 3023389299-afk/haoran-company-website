@@ -1,4 +1,6 @@
 document.documentElement.classList.add("static-site");
+const isEnglishPage = location.pathname.includes("/haoran-company-website/en/") || location.pathname.endsWith("/haoran-company-website/en");
+if (isEnglishPage) document.documentElement.lang = "en";
 
 document.addEventListener("DOMContentLoaded", () => {
   const revealItems = document.querySelectorAll("[data-reveal]");
@@ -22,40 +24,34 @@ document.addEventListener("DOMContentLoaded", () => {
   menuButton?.addEventListener("click", () => {
     const open = nav?.classList.toggle("open") ?? false;
     menuButton.setAttribute("aria-expanded", String(open));
-    menuButton.setAttribute("aria-label", open ? "关闭导航" : "打开导航");
+    menuButton.setAttribute("aria-label", open ? (isEnglishPage ? "Close navigation" : "关闭导航") : (isEnglishPage ? "Open navigation" : "打开导航"));
     document.body.classList.toggle("mobile-menu-open", open);
   });
   nav?.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => {
     nav.classList.remove("open");
     menuButton?.setAttribute("aria-expanded", "false");
-    menuButton?.setAttribute("aria-label", "打开导航");
+    menuButton?.setAttribute("aria-label", isEnglishPage ? "Open navigation" : "打开导航");
     document.body.classList.remove("mobile-menu-open");
   }));
   document.addEventListener("keydown", (event) => {
     if (event.key !== "Escape" || !nav?.classList.contains("open")) return;
     nav.classList.remove("open");
     menuButton?.setAttribute("aria-expanded", "false");
-    menuButton?.setAttribute("aria-label", "打开导航");
+    menuButton?.setAttribute("aria-label", isEnglishPage ? "Open navigation" : "打开导航");
     document.body.classList.remove("mobile-menu-open");
     menuButton?.focus();
   });
 
   const banner = document.querySelector(".home-banner");
   if (banner) {
-    const slides = [...banner.querySelectorAll(".home-banner-media img")];
+    const heroImage = banner.querySelector(".home-banner-media img");
     const controls = [...banner.querySelectorAll(".home-banner-controls button")];
     const caption = banner.querySelector(".home-banner-caption");
     let currentSlide = Math.max(0, controls.findIndex((button) => button.classList.contains("is-active")));
     let bannerTimer;
 
     const showSlide = (nextSlide) => {
-      currentSlide = (nextSlide + slides.length) % slides.length;
-      slides.forEach((slide, index) => {
-        const active = index === currentSlide;
-        slide.classList.toggle("is-active", active);
-        slide.setAttribute("aria-hidden", String(!active));
-        slide.alt = active ? slide.dataset.alt || "" : "";
-      });
+      currentSlide = (nextSlide + controls.length) % controls.length;
       controls.forEach((button, index) => {
         const active = index === currentSlide;
         button.classList.toggle("is-active", active);
@@ -63,12 +59,19 @@ document.addEventListener("DOMContentLoaded", () => {
         else button.removeAttribute("aria-current");
       });
       const selected = controls[currentSlide];
+      if (heroImage && selected) {
+        const nextImage = selected.dataset.slideImage || "";
+        if (nextImage && heroImage.getAttribute("src") !== nextImage) heroImage.setAttribute("src", nextImage);
+        heroImage.alt = selected.dataset.slideAlt || "";
+        heroImage.className = `is-active ${selected.dataset.slideClass || ""}`;
+        heroImage.setAttribute("aria-hidden", "false");
+      }
       if (caption && selected) {
         caption.querySelector("span").textContent = selected.dataset.slideLabel || "";
         caption.querySelector("strong").textContent = selected.dataset.slideTitle || "";
         caption.querySelector("p").textContent = selected.dataset.slideDetail || "";
         caption.style.animation = "none";
-        caption.offsetHeight;
+        void caption.offsetHeight;
         caption.style.animation = "";
       }
     };
@@ -85,6 +88,13 @@ document.addEventListener("DOMContentLoaded", () => {
       showSlide(index);
       startRotation();
     }));
+    window.setTimeout(() => {
+      const next = controls[(currentSlide + 1) % controls.length]?.dataset.slideImage;
+      if (next) {
+        const preloader = new Image();
+        preloader.src = next;
+      }
+    }, 1800);
     banner.addEventListener("mouseenter", stopRotation);
     banner.addEventListener("mouseleave", startRotation);
     banner.addEventListener("focusin", stopRotation);
@@ -127,10 +137,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (emptyState) emptyState.hidden = !query || resultCount > 0;
     if (searchStatus) {
       searchStatus.textContent = !query
-        ? "输入型号、系列或产品关键词开始搜索"
+        ? (isEnglishPage ? "Enter a model, series or product keyword to begin" : "输入型号、系列或产品关键词开始搜索")
         : resultCount > 0
-          ? `找到 ${resultCount} 个相关产品系列，点击可查看详细资料`
-          : "暂未找到匹配产品，可尝试缩短型号或提交选型需求";
+          ? (isEnglishPage ? `${resultCount} matching product ${resultCount === 1 ? "family" : "families"}` : `找到 ${resultCount} 个相关产品系列，点击可查看详细资料`)
+          : (isEnglishPage ? "No match found. Try a shorter model prefix or submit your requirements." : "暂未找到匹配产品，可尝试缩短型号或提交选型需求");
     }
   };
 
@@ -166,7 +176,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const note = document.querySelector("[data-selected-model]");
       if (note) {
         note.hidden = false;
-        note.textContent = `已从产品搜索定位到型号：${model.dataset.model}。下方参数为所属系列的公开资料，具体电气参数请以对应规格书或工程确认结果为准。`;
+        note.textContent = isEnglishPage
+          ? `Selected from product search: ${model.dataset.model}. The information below describes the product family; final electrical data must be confirmed against the applicable specification.`
+          : `已从产品搜索定位到型号：${model.dataset.model}。下方参数为所属系列的公开资料，具体电气参数请以对应规格书或工程确认结果为准。`;
       }
       model.scrollIntoView({ block: "center", behavior: "smooth" });
     }

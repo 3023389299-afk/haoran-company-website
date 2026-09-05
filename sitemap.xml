@@ -32,29 +32,53 @@
   <url><loc>https://3023389299-afk.github.io/haoran-company-website/quality/</loc><priority>0.9</priority></url>
   <url><loc>https://3023389299-afk.github.io/haoran-company-website/contact/</loc><priority>0.9</priority></url>
   <url><loc>https://3023389299-afk.github.io/haoran-company-website/privacy/</loc><lastmod>2026-08-23</lastmod><priority>0.4</priority></url>
-  <url><loc>https://3023389299-afk.github.io/haoran-company-website/products/power-shielding/</loc><priority>0.9</priority></url>
-  <url><loc>https://3023389299-afk.github.io/haoran-company-website/products/high-frequency-signal/</loc><priority>0.9</priority></url>
-  <url><loc>https://3023389299-afk.github.io/haoran-company-website/products/transformers-coupled/</loc><priority>0.9</priority></url>
-  <url><loc>https://3023389299-afk.github.io/haoran-company-website/products/through-hole-emi/</loc><priority>0.9</priority></url>
-  <url><loc>https://3023389299-afk.github.io/haoran-company-website/products/power-shielding/molding-power/</loc><priority>0.8</priority></url>
-  <url><loc>https://3023389299-afk.github.io/haoran-company-website/products/power-shielding/adhesive-shielded/</loc><priority>0.8</priority></url>
-  <url><loc>https://3023389299-afk.github.io/haoran-company-website/products/power-shielding/high-current-smd/</loc><priority>0.8</priority></url>
-  <url><loc>https://3023389299-afk.github.io/haoran-company-website/products/power-shielding/shielded-power/</loc><priority>0.8</priority></url>
-  <url><loc>https://3023389299-afk.github.io/haoran-company-website/products/power-shielding/smd-shielded/</loc><priority>0.8</priority></url>
-  <url><loc>https://3023389299-afk.github.io/haoran-company-website/products/high-frequency-signal/common-mode-smd/</loc><priority>0.8</priority></url>
-  <url><loc>https://3023389299-afk.github.io/haoran-company-website/products/high-frequency-signal/smd-coupling/</loc><priority>0.8</priority></url>
-  <url><loc>https://3023389299-afk.github.io/haoran-company-website/products/high-frequency-signal/hf-chip/</loc><priority>0.8</priority></url>
-  <url><loc>https://3023389299-afk.github.io/haoran-company-website/products/high-frequency-signal/ferrite-bead/</loc><priority>0.8</priority></url>
-  <url><loc>https://3023389299-afk.github.io/haoran-company-website/products/high-frequency-signal/laminated-chip/</loc><priority>0.8</priority></url>
-  <url><loc>https://3023389299-afk.github.io/haoran-company-website/products/transformers-coupled/wideband-transformer/</loc><priority>0.8</priority></url>
-  <url><loc>https://3023389299-afk.github.io/haoran-company-website/products/transformers-coupled/sm-coupled/</loc><priority>0.8</priority></url>
-  <url><loc>https://3023389299-afk.github.io/haoran-company-website/products/transformers-coupled/current-sensing/</loc><priority>0.8</priority></url>
-  <url><loc>https://3023389299-afk.github.io/haoran-company-website/products/through-hole-emi/through-hole-power/</loc><priority>0.8</priority></url>
-  <url><loc>https://3023389299-afk.github.io/haoran-company-website/products/through-hole-emi/common-mode-emi/</loc><priority>0.8</priority></url>
+  <url><loc>https://3023389299-afk.github.io/haoran-company-website/products/smd-power/</loc><priority>0.9</priority></url>
+  <url><loc>https://3023389299-afk.github.io/haoran-company-website/products/through-hole-power/</loc><priority>0.9</priority></url>
+  <url><loc>https://3023389299-afk.github.io/haoran-company-website/products/axial-traditional/</loc><priority>0.9</priority></url>
+  <url><loc>https://3023389299-afk.github.io/haoran-company-website/products/smd-power/cd-unshielded/</loc><priority>0.8</priority></url>
+  <url><loc>https://3023389299-afk.github.io/haoran-company-website/products/smd-power/hr-integrated/</loc><priority>0.8</priority></url>
+  <url><loc>https://3023389299-afk.github.io/haoran-company-website/products/smd-power/nr-shielded/</loc><priority>0.8</priority></url>
+  <url><loc>https://3023389299-afk.github.io/haoran-company-website/products/smd-power/cdrh-d/</loc><priority>0.8</priority></url>
+  <url><loc>https://3023389299-afk.github.io/haoran-company-website/products/smd-power/cdrh-r/</loc><priority>0.8</priority></url>
+  <url><loc>https://3023389299-afk.github.io/haoran-company-website/products/smd-power/cdbe-flat-wire/</loc><priority>0.8</priority></url>
+  <url><loc>https://3023389299-afk.github.io/haoran-company-website/products/smd-power/cd0805-three-pin/</loc><priority>0.8</priority></url>
+  <url><loc>https://3023389299-afk.github.io/haoran-company-website/products/through-hole-power/toroidal-plugin/</loc><priority>0.8</priority></url>
+  <url><loc>https://3023389299-afk.github.io/haoran-company-website/products/through-hole-power/hrdr-plugin/</loc><priority>0.8</priority></url>
+  <url><loc>https://3023389299-afk.github.io/haoran-company-website/products/through-hole-power/shielded-plugin/</loc><priority>0.8</priority></url>
+  <url><loc>https://3023389299-afk.github.io/haoran-company-website/products/axial-traditional/ferrite-bead/</loc><priority>0.8</priority></url>
+  <url><loc>https://3023389299-afk.github.io/haoran-company-website/products/axial-traditional/color-ring/</loc><priority>0.8</priority></url>
   <url><loc>https://3023389299-afk.github.io/haoran-company-website/applications/power-systems/</loc><priority>0.8</priority></url>
   <url><loc>https://3023389299-afk.github.io/haoran-company-website/applications/consumer-electronics/</loc><priority>0.8</priority></url>
   <url><loc>https://3023389299-afk.github.io/haoran-company-website/applications/automotive/</loc><priority>0.8</priority></url>
   <url><loc>https://3023389299-afk.github.io/haoran-company-website/applications/communication-iot/</loc><priority>0.8</priority></url>
   <url><loc>https://3023389299-afk.github.io/haoran-company-website/applications/industrial-control/</loc><priority>0.8</priority></url>
   <url><loc>https://3023389299-afk.github.io/haoran-company-website/applications/new-energy-lighting/</loc><priority>0.8</priority></url>
+  <url><loc>https://3023389299-afk.github.io/haoran-company-website/en/</loc><priority>0.9</priority></url>
+  <url><loc>https://3023389299-afk.github.io/haoran-company-website/en/about/</loc><priority>0.8</priority></url>
+  <url><loc>https://3023389299-afk.github.io/haoran-company-website/en/products/</loc><priority>0.9</priority></url>
+  <url><loc>https://3023389299-afk.github.io/haoran-company-website/en/factory/</loc><priority>0.8</priority></url>
+  <url><loc>https://3023389299-afk.github.io/haoran-company-website/en/applications/</loc><priority>0.8</priority></url>
+  <url><loc>https://3023389299-afk.github.io/haoran-company-website/en/quality/</loc><priority>0.8</priority></url>
+  <url><loc>https://3023389299-afk.github.io/haoran-company-website/en/contact/</loc><priority>0.8</priority></url>
+  <url><loc>https://3023389299-afk.github.io/haoran-company-website/en/products/smd-power/</loc><priority>0.8</priority></url>
+  <url><loc>https://3023389299-afk.github.io/haoran-company-website/en/products/through-hole-power/</loc><priority>0.8</priority></url>
+  <url><loc>https://3023389299-afk.github.io/haoran-company-website/en/products/axial-traditional/</loc><priority>0.8</priority></url>
+  <url><loc>https://3023389299-afk.github.io/haoran-company-website/en/products/smd-power/cd-unshielded/</loc><priority>0.7</priority></url>
+  <url><loc>https://3023389299-afk.github.io/haoran-company-website/en/products/smd-power/hr-integrated/</loc><priority>0.7</priority></url>
+  <url><loc>https://3023389299-afk.github.io/haoran-company-website/en/products/smd-power/nr-shielded/</loc><priority>0.7</priority></url>
+  <url><loc>https://3023389299-afk.github.io/haoran-company-website/en/products/smd-power/cdrh-d/</loc><priority>0.7</priority></url>
+  <url><loc>https://3023389299-afk.github.io/haoran-company-website/en/products/smd-power/cdrh-r/</loc><priority>0.7</priority></url>
+  <url><loc>https://3023389299-afk.github.io/haoran-company-website/en/products/smd-power/cdbe-flat-wire/</loc><priority>0.7</priority></url>
+  <url><loc>https://3023389299-afk.github.io/haoran-company-website/en/products/smd-power/cd0805-three-pin/</loc><priority>0.7</priority></url>
+  <url><loc>https://3023389299-afk.github.io/haoran-company-website/en/products/through-hole-power/toroidal-plugin/</loc><priority>0.7</priority></url>
+  <url><loc>https://3023389299-afk.github.io/haoran-company-website/en/products/through-hole-power/hrdr-plugin/</loc><priority>0.7</priority></url>
+  <url><loc>https://3023389299-afk.github.io/haoran-company-website/en/products/through-hole-power/shielded-plugin/</loc><priority>0.7</priority></url>
+  <url><loc>https://3023389299-afk.github.io/haoran-company-website/en/products/axial-traditional/ferrite-bead/</loc><priority>0.7</priority></url>
+  <url><loc>https://3023389299-afk.github.io/haoran-company-website/en/products/axial-traditional/color-ring/</loc><priority>0.7</priority></url>
+  <url><loc>https://3023389299-afk.github.io/haoran-company-website/en/applications/power-systems/</loc><priority>0.7</priority></url>
+  <url><loc>https://3023389299-afk.github.io/haoran-company-website/en/applications/consumer-electronics/</loc><priority>0.7</priority></url>
+  <url><loc>https://3023389299-afk.github.io/haoran-company-website/en/applications/automotive/</loc><priority>0.7</priority></url>
+  <url><loc>https://3023389299-afk.github.io/haoran-company-website/en/applications/communication-iot/</loc><priority>0.7</priority></url>
+  <url><loc>https://3023389299-afk.github.io/haoran-company-website/en/applications/industrial-control/</loc><priority>0.7</priority></url>
+  <url><loc>https://3023389299-afk.github.io/haoran-company-website/en/applications/new-energy-lighting/</loc><priority>0.7</priority></url>
 </urlset>
