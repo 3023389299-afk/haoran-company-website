@@ -1,8 +1,10 @@
 document.documentElement.classList.add("static-site");
-const isEnglishPage = location.pathname.includes("/haoran-company-website/en/") || location.pathname.endsWith("/haoran-company-website/en");
+const isEnglishPage = /(?:^|\/)en(?:\/|$)/.test(location.pathname);
 if (isEnglishPage) document.documentElement.lang = "en";
 
 document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll("form[data-inquiry-language]").forEach(initializeInquiryForm);
+
   const revealItems = document.querySelectorAll("[data-reveal]");
   if ("IntersectionObserver" in window) {
     const observer = new IntersectionObserver(
@@ -184,3 +186,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 });
+import { initializeInquiryForm } from "./inquiry-form.js";
