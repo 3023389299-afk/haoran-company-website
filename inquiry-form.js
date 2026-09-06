@@ -1,13 +1,62 @@
+import { matchingModel } from "./product-tools.js?v=20260906-review-followup";
+import { siteConfig } from "./site-config.js?v=20260906-review-followup";
 // Shared by the hydrated site and the GitHub Pages export.
 // Browser checks supplement FormSubmit's CAPTCHA; they are not server rate limits.
 const COOLDOWN_MS = 30000;
 const STORAGE_KEY = "haoran-inquiry-last-attempt";
+
+export function initializeInquiryContext(form) {
+  const category = form.querySelector("[data-inquiry-category]");
+  const family = form.querySelector("[data-inquiry-family]");
+  if (!category || !family) return () => {};
+  const target = form.querySelector("[data-inquiry-model]");
+  const note = form.querySelector("[data-inquiry-context]");
+  const params = new URLSearchParams(form.ownerDocument.defaultView.location.search);
+  const options = Array.from(family.options);
+  const updateFamilies = () => {
+    const group = category.selectedOptions[0]?.dataset.group;
+    const selected = family.selectedOptions[0];
+    options.forEach((option) => {
+      const excluded = Boolean(option.dataset.group) && option.dataset.group !== group;
+      option.hidden = excluded;
+      option.disabled = excluded;
+    });
+    if (selected?.disabled) {
+      family.value = "";
+      if (target) target.value = "";
+    }
+    if (note) note.hidden = true;
+  };
+  // Only copy known catalog context, never arbitrary URL content into the DOM.
+  const selected = options.find((option) => option.dataset.family === params.get("family"));
+  if (selected) {
+    const groupOption = Array.from(category.options).find((option) => option.dataset.group === selected.dataset.group);
+    if (groupOption) category.value = groupOption.value;
+    family.value = selected.value;
+    if (target && !target.value) target.value = matchingModel(JSON.parse(selected.dataset.models || "[]"), params.get("model") || "");
+  }
+  updateFamilies();
+  const inquiryType = form.querySelector("[data-inquiry-type]");
+  const typeOption = inquiryType && Array.from(inquiryType.options).find((option) => option.dataset.request === params.get("request"));
+  if (typeOption) inquiryType.value = typeOption.value;
+  if (selected && note) {
+    note.hidden = false;
+    note.textContent = form.dataset.inquiryLanguage === "en"
+      ? "Product details have been carried over. You can edit them before submitting."
+      : "已带入所选产品信息，可核对或修改后提交。";
+  }
+  const familyChanged = () => { if (target) target.value = ""; if (note) note.hidden = true; };
+  category.addEventListener("change", updateFamilies);
+  family.addEventListener("change", familyChanged);
+  return () => { category.removeEventListener("change", updateFamilies); family.removeEventListener("change", familyChanged); };
+}
 
 /** @param {HTMLFormElement} form */
 export function initializeInquiryForm(form) {
   const win = form.ownerDocument.defaultView;
   if (!win) return () => {};
   const isEnglish = form.dataset.inquiryLanguage === "en";
+  const disposeContext = initializeInquiryContext(form);
   const status = form.querySelector("[data-form-status]");
   const button = form.querySelector('button[type="submit"]');
   const next = form.querySelector('input[name="_next"]');
@@ -18,7 +67,7 @@ export function initializeInquiryForm(form) {
   let lastAttempt = 0;
 
   if (next) {
-    const base = win.location.pathname.startsWith("/haoran-company-website/") ? "/haoran-company-website" : "";
+    const base = win.location.pathname.startsWith(`${siteConfig.githubBasePath}/`) ? siteConfig.githubBasePath : "";
     next.value = `${win.location.origin}${base}${isEnglish ? "/en/contact/" : "/contact/"}?submitted=1`;
   }
 
@@ -84,6 +133,7 @@ export function initializeInquiryForm(form) {
   form.addEventListener("submit", submit);
   win.addEventListener("pageshow", reset);
   return () => {
+    disposeContext();
     form.removeEventListener("submit", submit);
     win.removeEventListener("pageshow", reset);
     win.clearTimeout(resetTimer);

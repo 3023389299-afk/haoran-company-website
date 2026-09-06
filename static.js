@@ -1,9 +1,12 @@
+import { initializeInquiryForm } from "./inquiry-form.js?v=20260906-review-followup";
+import { normalizeProductText as normalize, matchesProduct, matchingModel, initializeProductInquiryLinks } from "./product-tools.js?v=20260906-review-followup";
 document.documentElement.classList.add("static-site");
 const isEnglishPage = /(?:^|\/)en(?:\/|$)/.test(location.pathname);
 if (isEnglishPage) document.documentElement.lang = "en";
 
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll("form[data-inquiry-language]").forEach(initializeInquiryForm);
+  initializeProductInquiryLinks();
 
   const revealItems = document.querySelectorAll("[data-reveal]");
   if ("IntersectionObserver" in window) {
@@ -104,7 +107,6 @@ document.addEventListener("DOMContentLoaded", () => {
     startRotation();
   }
 
-  const normalize = (value) => value.toUpperCase().replace(/[\s\-_/（）()·.]+/g, "");
   const searchInput = document.querySelector("[data-product-search-input]");
   const searchForm = document.querySelector("[data-product-search-form]");
   const clearButton = document.querySelector("[data-product-search-clear]");
@@ -116,15 +118,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const query = normalize(value.trim());
     let resultCount = 0;
     searchCards.forEach((card) => {
-      const visible = Boolean(query) && normalize(card.dataset.search || "").includes(query);
+      const visible = matchesProduct(card.dataset.searchKey || "", value);
       card.hidden = !visible;
       if (visible) resultCount += 1;
 
       let exactModel = "";
       card.querySelectorAll("[data-model]").forEach((model) => {
-        const matched = Boolean(query) && normalize(model.dataset.model || "").includes(query);
+        const matched = matchesProduct(normalize(model.dataset.model || ""), value);
         model.classList.toggle("is-match", matched);
-        if (normalize(model.dataset.model || "") === query) exactModel = model.dataset.model || "";
+        if (matchingModel([model.dataset.model || ""], value)) exactModel = model.dataset.model || "";
       });
       const detail = card.querySelector("[data-search-detail]");
       if (detail) {
@@ -172,7 +174,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const requestedModel = new URLSearchParams(location.search).get("model");
   if (requestedModel) {
     const model = [...document.querySelectorAll(".model-number-grid [data-model]")]
-      .find((item) => normalize(item.dataset.model || "") === normalize(requestedModel));
+      .find((item) => matchingModel([item.dataset.model || ""], requestedModel));
     if (model) {
       model.classList.add("is-selected");
       const note = document.querySelector("[data-selected-model]");
@@ -182,8 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
           ? `Selected from product search: ${model.dataset.model}. The information below describes the product family; final electrical data must be confirmed against the applicable specification.`
           : `已从产品搜索定位到型号：${model.dataset.model}。下方参数为所属系列的公开资料，具体电气参数请以对应规格书或工程确认结果为准。`;
       }
-      model.scrollIntoView({ block: "center", behavior: "smooth" });
+      model.scrollIntoView({ block: "center", behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
     }
   }
 });
-import { initializeInquiryForm } from "./inquiry-form.js";
