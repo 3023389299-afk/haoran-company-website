@@ -1,0 +1,65 @@
+/* Professional review refinements: readable B2B copy and consistent product photography */
+@media (min-width: 821px) {
+  .global-nav { font-size: 13px; }
+  .global-brand small { font-size: 9px; }
+}
+.series-card-media,
+.category-series-media,
+.product-detail-media,
+.product-search-card-media { background: #fff; }
+.series-card-media::before,
+.category-series-media::before,
+.product-detail-media::before,
+.product-search-card-media::before { background: rgba(231, 239, 246, .72); }
+.home-product-image img,
+.series-card-media img,
+.category-series-media img,
+.product-detail-media img,
+.product-search-card-media img,
+.application-product-grid img { mix-blend-mode: normal; }
+.product-finder-heading > p,
+.directory-heading > p,
+.category-directory-card > p,
+.series-card-copy > p,
+.category-series-copy > p,
+.product-detail-section > header > p,
+.engineering-note p { font-size: 13px; }
+.category-card-series span,
+.series-card-copy dt,
+.series-card-copy dd,
+.series-card-copy footer,
+.category-series-specs span,
+.category-series-copy dt,
+.category-series-copy dd,
+.category-series-copy footer,
+.product-detail-metrics span,
+.product-detail-section > header small,
+.product-dimension-table .dimension-table-head span { font-size: 11px; }
+.category-directory-card footer b,
+.category-directory-card footer i,
+.product-search-status,
+.product-search-detail,
+.product-search-card-copy > p,
+.product-search-card-copy dt,
+.product-search-card-copy dd,
+.model-number-grid [data-model],
+.feature-application-grid h3,
+.feature-application-grid dt,
+.feature-application-grid dd,
+.product-dimension-table span,
+.product-dimension-table b { font-size: 12px; }
+.feature-application-grid li { font-size: 13px; line-height: 1.65; }
+@media (max-width: 560px) {
+  .global-brand small { font-size: 7px; }
+  .product-search-status,
+  .product-search-detail,
+  .category-card-series span,
+  .series-card-copy dt,
+  .series-card-copy dd,
+  .series-card-copy footer,
+  .category-series-copy dd,
+  .category-series-copy footer,
+  .product-detail-section > header > p,
+  .product-dimension-table span,
+  .product-dimension-table b { font-size: 11px; }
+}

@@ -1,0 +1,5 @@
+/* Datasheet request beside product search, shared by both languages. */
+.product-datasheet-note { margin: 18px 0 0; padding: 16px 20px; border-left: 3px solid var(--green); background: var(--paper); color: var(--ink); font-size: 14px; line-height: 1.8; }
+.product-datasheet-note a { color: var(--green); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.product-datasheet-note a:hover { color: var(--ink); }
+.product-datasheet-note a:focus-visible { outline: 2px solid var(--green); outline-offset: 4px; }

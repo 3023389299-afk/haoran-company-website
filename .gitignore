@@ -1,0 +1,6 @@
+node_modules/
+dist/
+reports/
+src/pages/
+src/pages.json
+scripts/extract.py
