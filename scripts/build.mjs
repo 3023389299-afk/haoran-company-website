@@ -85,6 +85,12 @@ for(const file of pages){
   }
   if(/<footer class="global-footer">/.test(html))html=html.replace(/<footer class="global-footer">.*?<\/footer>/s,components[lang].footer);
   const $=load(html,{decodeEntities:false});
+  // Framework transport placed SEO tags in the body on some exported pages.
+  $('body title,body meta,body link[rel="canonical"],body link[rel="alternate"]').appendTo('head');
+  const counterpart=lang==='en'?file.slice(3):`en/${file}`;
+  if(pages.includes(counterpart)){
+    $('.language-switch').attr('href',base+counterpart.replace(/index\.html$/,''));
+  }
   $('link[rel="stylesheet"]').each((_,el)=>{if(($(el).attr('href')||'').includes('/style.css'))$(el).attr('href',base+cssName)});
   $('script[src]').each((_,el)=>{if(($(el).attr('src')||'').includes('/static.js'))$(el).attr('src',entry['src/scripts/main.js'])});
   if($('form[data-inquiry-language]').length)$('head').append(`<script type="module" src="${entry['src/scripts/contact.js']}"></script>`);
